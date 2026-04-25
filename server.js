@@ -23,7 +23,7 @@ const BASE = "https://www.mvlempyr.io";
 // Route through ScraperAPI to bypass Cloudflare
 function wrap(url) {
   if (!SCRAPER_KEY) return url;
-  return `http://api.scraperapi.com?api_key=${SCRAPER_KEY}&url=${encodeURIComponent(url)}`;
+  return `http://api.scraperapi.com?api_key=${SCRAPER_KEY}&url=${encodeURIComponent(url)}&render=true`;
 }
 
 async function fetchPage(url, ttl = 3600) {
