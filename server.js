@@ -86,10 +86,10 @@ app.get("/api/rankings/:type", async (req, res) => {
       ? req.params.type : "popular";
 
     const urlMap = {
-      daily:   `${BASE}/sort/novelbin-daily`,
-      weekly:  `${BASE}/sort/novelbin-weekly`,
-      monthly: `${BASE}/sort/novelbin-monthly`,
-      popular: `${BASE}/sort/novelbin-popular`,
+      daily:   `${BASE}/most-popular?time=daily`,
+      weekly:  `${BASE}/most-popular?time=weekly`,
+      monthly: `${BASE}/most-popular?time=monthly`,
+      popular: `${BASE}/most-popular`,
     };
 
     const html = await fetchPage(urlMap[type]);
@@ -270,7 +270,7 @@ app.get("/api/search", async (req, res) => {
 // ── Latest releases ───────────────────────────────────────────────────────────
 app.get("/api/latest", async (req, res) => {
   try {
-    const html = await fetchPage(`${BASE}/sort/novelbin-new-manga`, 1800);
+    const html = await fetchPage(`${BASE}/latest-release-novel`, 1800);
     const $ = safeLoad(html);
     const novels = [];
     $(".col-novel-main .list-novel .row").each((i, el) => {
